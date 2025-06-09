@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búscame</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenida a Búscame</h1>
+        <p>Conecta con mujeres que ofrecen sus servicios de forma discreta y directa.</p>
+    </header>
+
+    <section class="profiles">
+        <div class="profile">
+            <img src="https://via.placeholder.com/150" alt="Chica 1">
+            <h2>Luna</h2>
+            <p>Disponible en Santo Domingo. Contacta para más info.</p>
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/150" alt="Chica 2">
+            <h2>Sofía</h2>
+            <p>Zona este. Atención especial las noches.</p>
+        </div>
+    </section>
+
+    <section class="contacto">
+        <a href="https://wa.me/18097802048" class="whatsapp-btn" target="_blank">Habla por WhatsApp</a>
+    </section>
+
+    <section class="chat">
+        <div id="chat-box">
+            <div class="mensaje">👋 Hola, ¿en qué te puedo ayudar?</div>
+        </div>
+        <input type="text" id="mensaje" placeholder="Escribe tu mensaje...">
+        <button onclick="enviarMensaje()">Enviar</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
