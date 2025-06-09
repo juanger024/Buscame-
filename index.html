@@ -1,43 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Búscame</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Búscame</h1>
-    <p>Conecta discretamente con quienes ofrecen sus servicios</p>
-  </header>
-
-  <main>
-    <section class="profile">
-      <img src="https://via.placeholder.com/150" alt="Perfil de ejemplo">
-      <h2>Ana</h2>
-      <p>Disponible en Ciudad de México. Trato amable y discreción total.</p>
-      <div class="buttons">
-        <a href="https://wa.me/5215555555555" target="_blank" class="btn whatsapp">WhatsApp</a>
-        <a href="mailto:contacto@buscame.com" class="btn email">Correo</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Búscame</title>
+  </head>
+  <body>
+    <!-- Pantalla de entrada -->
+    <div id="pantalla-inicial" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+      <h1 style="margin-bottom: 20px;">Bienvenido a Búscame</h1>
+      <button onclick="mostrarConfirmacion()" style="padding: 10px 20px; font-size: 18px;">ENTRAR</button>
+      <div id="confirmacion" style="margin-top: 20px; display: none; flex-direction: column; align-items: center;">
+        <p style="margin-bottom: 10px;">Soy mayor de edad y acepto continuar</p>
+        <button onclick="mostrarContenido()" style="padding: 10px 20px; font-size: 16px;">ACEPTAR</button>
       </div>
-    </section>
+    </div>
 
-    <section class="profile">
-      <img src="https://via.placeholder.com/150" alt="Perfil de ejemplo">
-      <h2>Laura</h2>
-      <p>Zona Monterrey. Servicios exclusivos y atención personalizada.</p>
-      <div class="buttons">
-        <a href="https://wa.me/5215555555555" target="_blank" class="btn whatsapp">WhatsApp</a>
-        <a href="mailto:contacto@buscame.com" class="btn email">Correo</a>
-      </div>
-    </section>
-  </main>
+    <!-- Contenido oculto al principio -->
+    <div id="contenido" style="display: none;">
+      <!-- Aquí va TODO el contenido real de tu página -->
+      <!-- Por ejemplo: perfiles, imágenes, botones de WhatsApp, etc. -->
+      <h2>Contenido de tu página va aquí</h2>
+      <p>Ejemplo: perfiles, servicios, contactos...</p>
+    </div>
 
-  <footer>
-    <p>© 2025 Búscame. Intermediario privado.</p>
-  </footer>
+    <!-- Script para controlar la entrada -->
+    <script>
+      function mostrarConfirmacion() {
+        document.getElementById('confirmacion').style.display = 'flex';
+      }
 
-  <script src="script.js"></script>
-</body>
+      function mostrarContenido() {
+        document.getElementById('pantalla-inicial').style.display = 'none';
+        document.getElementById('contenido').style.display = 'block';
+      }
+    </script>
+  </body>
 </html>
