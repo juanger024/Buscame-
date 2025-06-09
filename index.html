@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Búscame</title>
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #1a1a1a; color: white; }
-    .centered { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+    .portada { position: relative; height: 100vh; background: url('A_digital_photograph_on_a_dating_or_fashion_websit.png') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .portada-overlay { background-color: rgba(0, 0, 0, 0.6); padding: 40px; border-radius: 10px; text-align: center; }
     .btn { background: #ff0066; color: white; padding: 10px 20px; margin-top: 20px; border: none; font-size: 18px; cursor: pointer; border-radius: 5px; }
     .gallery { display: none; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 40px; }
-    .profile { background: #2c2c2c; border-radius: 10px; padding: 20px; width: 250px; text-align: center; }
-    .chat-locked, .chat-unlocked { background: #111; padding: 10px; border-radius: 5px; margin-top: 10px; }
-    .price { color: #ffcc00; margin-top: 10px; }
-    .chat-box { margin-top: 10px; text-align: left; }
+    .profile { background: #2c2c2c; border-radius: 10px; padding: 20px; width: 250px; text-align: center; cursor: pointer; }
+    .chat-view { display: none; padding: 20px; }
+    .chat-box { margin-top: 10px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }
     .message { background: #333; padding: 5px 10px; border-radius: 5px; margin: 5px 0; }
-    .chat-input { margin-top: 10px; display: flex; gap: 5px; }
+    .chat-input { margin-top: 10px; display: flex; gap: 5px; max-width: 600px; margin-left: auto; margin-right: auto; }
     .chat-input input { flex: 1; padding: 5px; }
+    .price { color: #ffcc00; margin-top: 10px; }
+    .bubble-rep { position: fixed; bottom: 20px; right: 20px; background: orange; color: white; padding: 10px 15px; border-radius: 30px; font-weight: bold; box-shadow: 0 0 10px #ff9900; }
+    .back-btn { margin-top: 20px; background: #555; }
   </style>
 </head>
 <body>
 
-<div id="ageCheck" class="centered">
-  <h1>¡Bienvenido a Búscame!</h1>
-  <p>Debes ser mayor de edad para continuar.</p>
-  <button class="btn" onclick="enterSite()">Soy mayor de edad</button>
+<div id="ageCheck" class="portada">
+  <div class="portada-overlay">
+    <h1>Bienvenido a Búscame</h1>
+    <p>Debes ser mayor de edad para continuar.</p>
+    <button class="btn" onclick="enterSite()">Soy mayor de edad</button>
+  </div>
 </div>
 
 <div id="profileGallery" class="gallery"></div>
+<div id="chatView" class="chat-view"></div>
+<div class="bubble-rep">💬 Representante en línea</div>
 
 <script>
-  const gallery = document.getElementById('profileGallery');
-  const ageCheck = document.getElementById('ageCheck');
-
-  function enterSite() {
-    ageCheck.style.display = 'none';
-    gallery.style.display = 'flex';
-  }
-
   const profiles = [
     { name: "Sofía", price: "$5" },
     { name: "Valentina", price: "$7" },
@@ -50,45 +49,56 @@
     { name: "Emma", price: "$9" }
   ];
 
+  const gallery = document.getElementById("profileGallery");
+  const ageCheck = document.getElementById("ageCheck");
+  const chatView = document.getElementById("chatView");
+
+  function enterSite() {
+    ageCheck.style.display = "none";
+    gallery.style.display = "flex";
+  }
+
   profiles.forEach((p, i) => {
-    const profileDiv = document.createElement('div');
-    profileDiv.className = 'profile';
-    profileDiv.innerHTML = `
-      <h2>${p.name}</h2>
-      <p class="price">Precio del chat: ${p.price}</p>
-      <div class="chat-locked" id="chat-${i}">
-        <p>Este chat está bloqueado.</p>
-        <button class="btn" onclick="pay(${i})">Pagar con PayPal</button>
-      </div>
-    `;
-    gallery.appendChild(profileDiv);
+    const div = document.createElement("div");
+    div.className = "profile";
+    div.innerHTML = `<h2>${p.name}</h2><p class="price">Chat: ${p.price}</p>`;
+    div.onclick = () => openChat(i);
+    gallery.appendChild(div);
   });
 
-  function pay(index) {
-    const chat = document.getElementById(`chat-${index}`);
-    chat.className = 'chat-unlocked';
-    chat.innerHTML = `
-      <div class="chat-box" id="chat-box-${index}">
-        <div class="message"><strong>${profiles[index].name}:</strong> Hola, ¿en qué te puedo ayudar?</div>
+  function openChat(index) {
+    gallery.style.display = "none";
+    chatView.style.display = "block";
+    chatView.innerHTML = `
+      <h2 style="text-align:center;">Chat con ${profiles[index].name}</h2>
+      <p style="text-align:center; color: orange;">Este chat estará disponible por 5 minutos.</p>
+      <div id="chat-box-${index}" class="chat-box">
+        <div class="message"><strong>${profiles[index].name}:</strong> Hola, ¿quieres hablar conmigo?</div>
       </div>
       <div class="chat-input">
-        <input type="text" placeholder="Escribe tu mensaje" id="input-${index}" />
+        <input type="text" id="input-${index}" placeholder="Escribe tu mensaje..." />
         <button class="btn" onclick="sendMessage(${index})">Enviar</button>
       </div>
+      <button class="btn back-btn" onclick="goBack()">Volver</button>
     `;
   }
 
   function sendMessage(index) {
     const input = document.getElementById(`input-${index}`);
     const message = input.value.trim();
-    if (message !== '') {
-      const chatBox = document.getElementById(`chat-box-${index}`);
-      const userMsg = document.createElement('div');
-      userMsg.className = 'message';
-      userMsg.innerHTML = `<strong>Tú:</strong> ${message}`;
-      chatBox.appendChild(userMsg);
-      input.value = '';
+    if (message !== "") {
+      const box = document.getElementById(`chat-box-${index}`);
+      const msgDiv = document.createElement("div");
+      msgDiv.className = "message";
+      msgDiv.innerHTML = `<strong>Tú:</strong> ${message}`;
+      box.appendChild(msgDiv);
+      input.value = "";
     }
+  }
+
+  function goBack() {
+    chatView.style.display = "none";
+    gallery.style.display = "flex";
   }
 </script>
 
