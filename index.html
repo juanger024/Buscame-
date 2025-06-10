@@ -1,133 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Chat Individual</title>
+  <meta charset="UTF-8" />
+  <title>Búscame - Galería de Chats</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f2f5;
+      background: #fff1e6;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
 
-    .chat-container {
-      max-width: 400px;
-      margin: 50px auto;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
+    h1 {
+      text-align: center;
+      color: #e63946;
     }
 
-    .chat-header {
+    .chat-gallery {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .chat-card {
+      background: #ffe5d9;
+      border-radius: 15px;
       padding: 15px;
-      background: #ffffff;
-      border-bottom: 1px solid #ddd;
+      width: 250px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
 
-    .chat-header img {
-      width: 40px;
-      height: 40px;
+    .chat-card:hover {
+      transform: scale(1.05);
+    }
+
+    .chat-card img {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      margin-right: 10px;
+      object-fit: cover;
+      margin-bottom: 10px;
     }
 
-    .chat-header .name {
+    .chat-card .name {
       font-weight: bold;
       font-size: 16px;
+      color: #d62828;
     }
 
-    .chat-messages {
-      height: 300px;
-      overflow-y: auto;
-      padding: 15px;
-      background: #e5ddd5;
-    }
-
-    .message {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .message.sent {
-      justify-content: flex-end;
-    }
-
-    .message.received {
-      justify-content: flex-start;
-    }
-
-    .bubble {
-      max-width: 70%;
-      padding: 10px;
-      border-radius: 20px;
+    .chat-card .last-message {
       font-size: 14px;
-      line-height: 1.4;
-    }
-
-    .sent .bubble {
-      background: #0084ff;
-      color: white;
-      border-bottom-right-radius: 2px;
-    }
-
-    .received .bubble {
-      background: #f1f0f0;
-      color: black;
-      border-bottom-left-radius: 2px;
-    }
-
-    .chat-input {
-      display: flex;
-      border-top: 1px solid #ccc;
-      background: white;
-    }
-
-    .chat-input input {
-      flex: 1;
-      border: none;
-      padding: 15px;
-      font-size: 14px;
-    }
-
-    .chat-input button {
-      background: #0084ff;
-      border: none;
-      color: white;
-      padding: 0 20px;
-      cursor: pointer;
+      color: #6a4c93;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
 
-<div class="chat-container">
-  <div class="chat-header">
-    <img src="https://i.pravatar.cc/40" alt="User">
-    <div class="name">Haley Rose</div>
-  </div>
+  <h1>Galería de Chats</h1>
 
-  <div class="chat-messages">
-    <div class="message received">
-      <div class="bubble">Hi! 😊</div>
+  <div class="chat-gallery">
+    <div class="chat-card" onclick="location.href='chat1.html'">
+      <img src="https://i.pravatar.cc/150?img=1" alt="Perfil 1" />
+      <div class="name">Valeria Luna</div>
+      <div class="last-message">Hola cariño 😘</div>
     </div>
-    <div class="message sent">
-      <div class="bubble">Hi, I would like to meet you 😃</div>
+    <div class="chat-card" onclick="location.href='chat2.html'">
+      <img src="https://i.pravatar.cc/150?img=2" alt="Perfil 2" />
+      <div class="name">Sofía Rivera</div>
+      <div class="last-message">¿Vienes hoy?</div>
     </div>
-    <div class="message received">
-      <div class="bubble">Sure! When are you free?</div>
+    <div class="chat-card" onclick="location.href='chat3.html'">
+      <img src="https://i.pravatar.cc/150?img=3" alt="Perfil 3" />
+      <div class="name">Camila Torres</div>
+      <div class="last-message">Te estaba esperando...</div>
+    </div>
+    <div class="chat-card" onclick="location.href='chat4.html'">
+      <img src="https://i.pravatar.cc/150?img=4" alt="Perfil 4" />
+      <div class="name">Lucía Márquez</div>
+      <div class="last-message">Hola guapo 😍</div>
+    </div>
+    <div class="chat-card" onclick="location.href='chat5.html'">
+      <img src="https://i.pravatar.cc/150?img=5" alt="Perfil 5" />
+      <div class="name">Diana Cruz</div>
+      <div class="last-message">¿Nos vemos esta noche?</div>
+    </div>
+    <div class="chat-card" onclick="location.href='chat6.html'">
+      <img src="https://i.pravatar.cc/150?img=6" alt="Perfil 6" />
+      <div class="name">Alexa Romero</div>
+      <div class="last-message">Extraño tus mensajes...</div>
+    </div>
+    <div class="chat-card" onclick="location.href='chat7.html'">
+      <img src="https://i.pravatar.cc/150?img=7" alt="Perfil 7" />
+      <div class="name">Natalia Sol</div>
+      <div class="last-message">¿Dónde andas? 😏</div>
+    </div>
+    <div class="chat-card" onclick="location.href='chat8.html'">
+      <img src="https://i.pravatar.cc/150?img=8" alt="Perfil 8" />
+      <div class="name">Andrea Luz</div>
+      <div class="last-message">Estoy sola hoy...</div>
+    </div>
+    <div class="chat-card" onclick="location.href='chat9.html'">
+      <img src="https://i.pravatar.cc/150?img=9" alt="Perfil 9" />
+      <div class="name">Renata Vega</div>
+      <div class="last-message">¿Quieres jugar? 😈</div>
+    </div>
+    <div class="chat-card" onclick="location.href='chat10.html'">
+      <img src="https://i.pravatar.cc/150?img=10" alt="Perfil 10" />
+      <div class="name">Julieta Mar</div>
+      <div class="last-message">Me encantas 💋</div>
     </div>
   </div>
-
-  <div class="chat-input">
-    <input type="text" placeholder="Type a message...">
-    <button>Send</button>
-  </div>
-</div>
 
 </body>
-</html>
+        </html>
